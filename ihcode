@@ -1,0 +1,44 @@
+void setup()
+  {  
+  pinMode (2,OUTPUT);  
+  pinMode (5,OUTPUT);
+  pinMode (8,OUTPUT);
+  }  
+
+  void loop()
+  {  
+  digitalWrite(2, HIGH);
+  digitalWrite(8, HIGH);  
+  long duration, inches, cm;  
+  pinMode(3, OUTPUT);
+  digitalWrite(3, LOW);  
+  delayMicroseconds(2);  
+  digitalWrite(3, HIGH);  
+  delayMicroseconds(5);  
+  digitalWrite(3, LOW);  
+  pinMode (4, INPUT); 
+  duration = pulseIn(4, HIGH);  
+  inches = microsecondsToInches(duration);
+  cm = inches*2.54 ;
+   
+  if (cm < 10 )
+  { 
+  analogWrite(6,255); 
+  }
+  else if (cm < 50)
+  { 
+  analogWrite(6,200); 
+  }
+  else if (cm < 100)
+  { 
+  analogWrite(6,150); 
+  }
+  else
+  {  
+  analogWrite(6,0); 
+  }
+  }  
+  long microsecondsToInches(long microseconds)
+  {  
+  return microseconds / 74 / 2;
+  }
